@@ -17,22 +17,23 @@ package cmd
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
 
 // helloCmd represents the hello command
 var helloCmd = &cobra.Command{
-	Use:   "hello",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	// Usage
+	Use: "hello [your name]",
+	// Available Commandsの説明
+	Short: "return your name",
+	// -h の内容
+	Long: `echo argument long`,
+	// 引数に制限追加
+	Args: cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Hi, %s!", args[0])
+		fmt.Printf("Hi, %s!", strings.Join(args, " "))
 	},
 }
 
